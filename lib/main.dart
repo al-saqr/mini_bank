@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Banking App',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           titleTextStyle: TextStyle(color: Colors.black),
         ),
@@ -72,60 +72,93 @@ class _MyHomePageState extends State<MyHomePage> {
               ReceiveMoneyWidget(),
             ],
           ),
-          Text('Recent Transactions'),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Recent Transactions'),
+                TextButton(
+                  onPressed: () {},
+                  child: Text('View all'),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const CircleAvatar(
+                  backgroundColor: Colors.black26,
+                  child: Icon(Icons.download_done, color: Colors.black)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Fariya Alam Khan $_counter'),
+                  Row(
+                    children: const [
+                      Text('12:31 AM'),
+                      Text('25 June'),
+                      Text('Jazzcash'),
+                    ],
+                  ),
+                ],
+              ),
+              Text('+Rs. 1200'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const CircleAvatar(
+                  backgroundColor: Colors.black26,
+                  child: Icon(Icons.home_filled, color: Colors.black)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Binnari Town, Karachi PK'),
+                  Row(
+                    children: const [
+                      Text('12:31 AM'),
+                      Text('25 June'),
+                      Text('Jazzcash'),
+                    ],
+                  ),
+                ],
+              ),
+              Text('+Rs. 1200'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const CircleAvatar(
+                  backgroundColor: Colors.black26,
+                  child: Icon(Icons.play_disabled, color: Colors.black)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('PlayStore Purchase'),
+                  Row(
+                    children: const [
+                      Text('12:31 AM'),
+                      Text('25 June'),
+                      Text('Jazzcash'),
+                    ],
+                  ),
+                ],
+              ),
+              Text('+Rs. 1200'),
+            ],
+          ),
           Expanded(
             child: Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
-            color: Colors.black12,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    children: const [
-                      Icon(Icons.home),
-                      Text('Home'),
-                    ],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    children: const [
-                      Icon(Icons.payments),
-                      Text('Payments'),
-                    ],
-                  ),
-                ),
-                Expanded(child: Container(width: double.infinity)),
-                TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    children: const [
-                      Icon(Icons.message),
-                      Text('Chats'),
-                    ],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    children: const [
-                      Icon(Icons.assignment),
-                      Text('More'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          const CustomBottomNavBarWidget(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -134,6 +167,63 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+}
+
+class CustomBottomNavBarWidget extends StatelessWidget {
+  const CustomBottomNavBarWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
+      color: Colors.black12,
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          TextButton(
+            onPressed: () {},
+            child: Column(
+              children: const [
+                Icon(Icons.home),
+                Text('Home'),
+              ],
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Column(
+              children: const [
+                Icon(Icons.payments),
+                Text('Payments'),
+              ],
+            ),
+          ),
+          Expanded(child: Container(width: double.infinity)),
+          TextButton(
+            onPressed: () {},
+            child: Column(
+              children: const [
+                Icon(Icons.message),
+                Text('Chats'),
+              ],
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Column(
+              children: const [
+                Icon(Icons.assignment),
+                Text('More'),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -147,8 +237,8 @@ class ReceiveMoneyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.all(5)),
-        minimumSize: MaterialStateProperty.all(Size(150, 80)),
+        padding: MaterialStateProperty.all(const EdgeInsets.all(15)),
+        minimumSize: MaterialStateProperty.all(const Size(150, 80)),
         backgroundColor: MaterialStateProperty.all(Colors.blue.shade300),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
@@ -187,7 +277,7 @@ class SendMoneyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.all(5)),
+        padding: MaterialStateProperty.all(EdgeInsets.all(15)),
         minimumSize: MaterialStateProperty.all(Size(150, 80)),
         backgroundColor:
             MaterialStateProperty.all(Color.fromARGB(255, 196, 152, 59)),
