@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Banking App',
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
+    appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           titleTextStyle: TextStyle(color: Colors.black),
         ),
@@ -47,10 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          Icon(
-            Icons.search,
-            color: Colors.black,
+        actions: [
+          IconButton(
+            onPressed: () => CustomAlertDialogWidget(),
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
           ),
           CircleAvatar(),
         ],
@@ -162,12 +165,77 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        isExtended: true,
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.abc_outlined,
+      //           color: Colors.black,
+      //         ),
+      //         label: ''),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.abc_outlined,
+      //           color: Colors.black,
+      //         ),
+      //         label: ''),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.abc_outlined,
+      //           color: Colors.black,
+      //         ),
+      //         label: ''),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.abc_outlined,
+      //           color: Colors.black,
+      //         ),
+      //         label: ''),
+      //   ],
+      // ),
     );
+  }
+}
+
+class CustomAlertDialogWidget extends StatefulWidget {
+  const CustomAlertDialogWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<CustomAlertDialogWidget> createState() =>
+      _CustomAlertDialogWidgetState();
+}
+
+class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          showBottomSheet(
+            context: context,
+            builder: (BuildContext context) {
+              return SizedBox(
+                height: 300,
+                child: Center(
+                  child: ElevatedButton(
+                    child: Text('close'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              );
+            },
+          );
+        },
+        child: Text('Press'));
   }
 }
 
